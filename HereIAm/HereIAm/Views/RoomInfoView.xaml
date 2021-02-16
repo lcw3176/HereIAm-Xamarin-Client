@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HereIAm.Views.RoomInfoView">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="지도 초기화"
+                     Order="Secondary"
+                     Priority="0"
+                     Command="{Binding clearDisplay}"/>
+
+        <ToolbarItem Text="시간별 기록보기"
+                     Order="Secondary"
+                     Priority="1"
+                     Command="{Binding changeMode}"
+                     CommandParameter="false"/>
+
+        <ToolbarItem Text="실시간 위치보기"
+                     Order="Secondary"
+                     Priority="2"
+                     Command="{Binding changeMode}"
+                     CommandParameter="true"/>
+        
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+
+            <StackLayout Orientation="Vertical"
+                         HeightRequest="200">
+                <ListView ItemsSource="{Binding memberCollection}"
+                      RowHeight="100">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="이동 경로 보기"
+                                              Command="{Binding showMovePath}"
+                                              CommandParameter="{Binding name}"/>
+                                </ViewCell.ContextActions>
+                                <StackLayout Orientation="Vertical">
+                                    <Button Text="{Binding name}"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="Start"
+                                        FontSize="Title"
+                                        BackgroundColor="Transparent"
+                                        BorderWidth="0"
+                                        Command="{Binding onClick}"
+                                        CommandParameter="{Binding name}"/>
+
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding time}"
+                                           Margin="5"
+                                           TextColor="Red"
+                                           VerticalOptions="CenterAndExpand"/>  
+
+                                        <Label Text="{Binding place}"
+                                       Margin="5"
+                                       VerticalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand">
+                <ContentView Content="{Binding map}"
+                             HeightRequest="450"/>
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                         Orientation="Horizontal">
+
+                <StackLayout.Style>
+                    <Style TargetType="StackLayout">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding isRealtime}"
+                                         TargetType="StackLayout"
+                                         Value="true">
+                                <Setter Property="IsVisible"
+                                        Value="false"/>
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding isRealtime}"
+                                         TargetType="StackLayout"
+                                         Value="false">
+                                <Setter Property="IsVisible"
+                                        Value="true"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackLayout.Style>
+
+                <DatePicker HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            Date="{Binding date}"/>
+                <TimePicker HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            Time="{Binding fromtime}"/>
+
+                <Label Text="~"
+                           HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand"/>
+
+                <TimePicker HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            Time="{Binding totime}"/>
+
+            </StackLayout>
+            
+        </StackLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>

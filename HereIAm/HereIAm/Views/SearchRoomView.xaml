@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HereIAm.Views.SearchRoomView">
+  <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <Label Text="Search"
+                   FontSize="Title"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   HeightRequest="100"/>
+            
+            <Entry Placeholder="방 제목 입력"
+                   VerticalOptions="Center"
+                   HorizontalOptions="CenterAndExpand"
+                   WidthRequest="300"
+                   Text="{Binding name}"/>
+            
+            <Entry Placeholder="비밀번호 입력"
+                   IsPassword="True"
+                   VerticalOptions="Center"
+                   HorizontalOptions="CenterAndExpand"
+                   WidthRequest="300"
+                   x:Name="pw"/>
+            
+            <Button Text="입장하기"
+                    VerticalOptions="Center"
+                    HorizontalOptions="CenterAndExpand"
+                    Margin="20"
+                    WidthRequest="200"
+                    Command="{Binding roomSearch}"
+                    CommandParameter="{x:Reference pw}"/>
+
+        </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

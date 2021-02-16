@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HereIAm.Views.MyInfoView">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <Label Text="내 설정"
+                   FontSize="20"
+                   Margin="10"/>
+
+            <StackLayout Orientation="Horizontal">
+                <Switch IsToggled="{Binding useBackgroundService}"
+                        Toggled="Switch_Toggled"
+                        VerticalOptions="CenterAndExpand"/>
+                <Label Text="백그라운드에서 동작"
+                       VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <Label Text="ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ"
+                   HorizontalOptions="CenterAndExpand"/>
+
+            <StackLayout Orientation="Horizontal">
+                <Button Text="로그아웃"
+                        Command="{Binding logout}"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"/>
+
+                <Button Text="방 나가기"
+                        Command="{Binding checkout}"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"/>
+
+            </StackLayout>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

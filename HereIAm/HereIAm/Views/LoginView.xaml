@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HereIAm.Views.LoginView"
+             BackgroundColor="White">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Frame BackgroundColor="#2196F3" 
+               Padding="24" 
+               CornerRadius="0"
+               Grid.Row="0">
+            <Label Text="Here I Am" 
+                   HorizontalTextAlignment="Center" 
+                   TextColor="White" 
+                   FontSize="36"/>
+        </Frame>
+
+
+
+        <Entry Grid.Row="2"
+               WidthRequest="300"
+               Placeholder="ID"
+               HorizontalOptions="CenterAndExpand"
+               Text="{Binding email}"/>
+
+        <Entry Grid.Row="3"
+               Placeholder="{Binding pwPlaceholder}"
+               WidthRequest="300"
+               HorizontalOptions="CenterAndExpand"
+               IsPassword="true"
+               x:Name="pw"/>
+
+        <StackLayout Grid.Row="4"
+                     Orientation="Horizontal"
+                     HorizontalOptions="CenterAndExpand">
+            <CheckBox CheckedChanged="CheckBox_CheckedChanged"
+                      VerticalOptions="Center"
+                      HorizontalOptions="Center"
+                      IsChecked="{Binding remember}"/>
+            <Label Text="로그인 정보 기억하기"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"/>
+        </StackLayout>
+
+        <Button Text="Log-in"
+                Grid.Row="5"
+                WidthRequest="200"
+                Margin="20"
+                HorizontalOptions="CenterAndExpand"
+                Command="{Binding loginCommand}"
+                CommandParameter="{x:Reference pw}"/>
+
+
+    </Grid>
+
+</ContentPage>
